@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Valentine untuk Nduttt 💖</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: "Poppins", sans-serif;
+      background: linear-gradient(to bottom, #ffe6f0, #d7fff9);
+      overflow-x: hidden;
+      text-align: center;
+    }
+
+    h1, h2 {
+      color: #ff2d6d;
+    }
+
+    p {
+      color: #222;
+    }
+
+    /* Opening Surat */
+    #opening {
+      position: fixed;
+      inset: 0;
+      background: rgba(255, 220, 240, 0.97);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
+      padding: 25px;
+      text-align: center;
+    }
+
+    #opening h1 {
+      font-size: 2rem;
+    }
+
+    #opening p {
+      max-width: 500px;
+      font-size: 1.05rem;
+      line-height: 1.7;
+    }
+
+    #opening button {
+      margin-top: 25px;
+      padding: 15px 35px;
+      border: none;
+      border-radius: 30px;
+      background: #ff2d6d;
+      color: white;
+      font-size: 1.1rem;
+      cursor: pointer;
+      animation: bounce 1.5s infinite;
+    }
+
+    @keyframes bounce {
+      0%,100% {transform: translateY(0);}
+      50% {transform: translateY(-8px);}
+    }
+
+    /* Main */
+    .container {
+      padding: 20px;
+      max-width: 900px;
+      margin: auto;
+    }
+
+    .card {
+      background: rgba(255,255,255,0.87);
+      padding: 20px;
+      border-radius: 20px;
+      margin: 20px 0;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+
+    button {
+      padding: 12px 25px;
+      border: none;
+      border-radius: 25px;
+      background: #ff2d6d;
+      color: white;
+      font-size: 1rem;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    button:hover {
+      opacity: 0.85;
+    }
+
+    /* Carousel Swipe */
+    .carousel-swipe {
+      display: flex;
+      gap: 15px;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      padding: 15px;
+      border-radius: 20px;
+    }
+
+    .carousel-swipe img {
+      flex: 0 0 80%;
+      max-width: 280px;
+      border-radius: 20px;
+      scroll-snap-align: center;
+      cursor: pointer;
+      box-shadow: 0 5px 12px rgba(0,0,0,0.25);
+      transition: 0.3s;
+    }
+
+    .carousel-swipe img:hover {
+      transform: scale(1.03);
+    }
+
+    .carousel-swipe::-webkit-scrollbar {
+      display: none;
+    }
+
+    /* Popup Foto */
+    #popup {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.85);
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
+
+    #popup img {
+      width: 90%;
+      max-width: 420px;
+      border-radius: 20px;
+    }
+
+    /* Hearts */
+    .heart {
+      position: fixed;
+      font-size: 20px;
+      animation: floatUp 6s linear infinite;
+    }
+
+    @keyframes floatUp {
+      from {transform: translateY(100vh); opacity: 1;}
+      to {transform: translateY(-10vh); opacity: 0;}
+    }
+
+    /* 🌸 Flower Falling */
+    .flower {
+      position: fixed;
+      top: -10px;
+      font-size: 18px;
+      animation: fall 7s linear infinite;
+    }
+
+    @keyframes fall {
+      from { transform: translateY(-10vh); opacity: 1; }
+      to   { transform: translateY(110vh); opacity: 0; }
+    }
+
+    /* 🦋 Butterfly Flying */
+    .butterfly {
+      position: fixed;
+      font-size: 22px;
+      animation: fly 6s ease-in-out infinite;
+    }
+
+    @keyframes fly {
+      0%   { transform: translate(0, 0); opacity: 1; }
+      100% { transform: translate(100vw, -80vh); opacity: 0; }
+    }
+
+    /* 💘 Kabur Button */
+    #noBtn {
+      position: absolute;
+      background: #444;
+    }
+
+    .valentine-box {
+      position: relative;
+      height: 160px;
+    }
+
+    footer {
+      margin: 30px 0;
+      font-weight: bold;
+      color: #ff2d6d;
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- Opening Surat -->
+<div id="opening">
+  <h1>Hai Nduttt 🤍</h1>
+  <p>
+    Aku bikin ini khusus buat kamu…  
+    bukan karena hari ini Valentine aja,  
+    tapi karena aku bersyukur banget punya kamu.  
+    <br><br>
+    Yuk buka pelan-pelan ya cinta 💖
+  </p>
+  <button onclick="startLove()">Buka Suratnya 💌</button>
+</div>
+
+<!-- Popup Foto -->
+<div id="popup" onclick="closePopup()">
+  <img id="popupImg" src="">
+</div>
+
+<!-- Lagu -->
+<audio id="bgMusic">
+  <source src="lesungpipi.mp3" type="audio/mpeg">
+</audio>
+
+<div class="container">
+
+  <h1>Happy Valentine Ilfanti Verdiana 🌸</h1>
+  <p>Perjalanan kita sejak <b>26 Agustus 2023</b></p>
+  <p><b>2 tahun 5 bulan 19 hari</b> bersama 🤍</p>
+
+  <!-- Carousel Foto Swipe -->
+  <div class="card">
+    <h2>Foto Kebersamaan Kita 📸</h2>
+    <p>Geser fotonya ya nduttt 🤍</p>
+
+    <div class="carousel-swipe">
+      <img src="foto1.jpeg" onclick="openPopup(this.src)">
+      <img src="foto2.jpeg" onclick="openPopup(this.src)">
+      <img src="foto3.jpeg" onclick="openPopup(this.src)">
+      <img src="foto4.jpeg" onclick="openPopup(this.src)">
+      <img src="foto5.jpeg" onclick="openPopup(this.src)">
+    </div>
+  </div>
+
+  <!-- Surprise 1 -->
+  <div class="card">
+    <h2>Surprise Pertama 🌷</h2>
+    <button onclick="showSurprise1()">Klik Surprise 💐</button>
+
+    <div id="surprise1" style="display:none; margin-top:15px;">
+      <p>
+        Nduttt… kamu itu hadiah terbaik yang pernah aku punya 🤍  
+        Aku bersyukur banget bisa jalan sejauh ini sama kamu 😭💖
+      </p>
+    </div>
+  </div>
+
+  <!-- Surprise 2 -->
+  <div class="card">
+    <h2>Surprise Terakhir 🤍</h2>
+    <button onclick="showStory()">Klik Surprise Lagi 😭</button>
+
+    <div id="storyBox" style="display:none; margin-top:20px; text-align:left;">
+      <p>
+        Nduttt… aku gak pernah nyangka kita bisa sejauh ini.  
+        <br><br>
+        2 tahun 5 bulan ini gak selalu mudah, apalagi sekarang kita harus kuat di fase LDR.  
+        Tapi kamu tetap yang paling dekat di hati aku.  
+        <br><br>
+        Kamu lucu, baik hati, selalu ngerti aku…  
+        saat aku susah kamu selalu ada.  
+        <br><br>
+        Kita juga pernah hampir nyerah waktu pentas seni dulu…  
+        tapi kita berhasil lewatin fase itu.  
+        <br><br>
+        Aku gak mau kehilangan kamu.  
+        <br><br>
+        Dan kalau suatu hari nanti aku nikah…  
+        aku mau itu sama kamu 🤍😭
+      </p>
+    </div>
+  </div>
+
+  <!-- 💌 Pesan Rahasia -->
+  <div class="card">
+    <h2>Pesan Rahasia 🤫</h2>
+    <button onclick="secretMessage()">Klik Pelan-Pelan 💌</button>
+    <p id="secretText"></p>
+  </div>
+
+  <!-- 🎁 Hadiah Random -->
+  <div class="card">
+    <h2>Hadiah Buat Nduttt 🎁</h2>
+    <button onclick="randomGift()">Ambil Hadiah 🎀</button>
+    <p id="giftBox"></p>
+  </div>
+
+  <!-- 💘 Valentine Question -->
+  <div class="card">
+    <h2>Mau Jadi Valentineku Selamanya? 💖</h2>
+
+    <div class="valentine-box">
+      <button onclick="yesLove()">IYA 😭💘</button>
+      <button id="noBtn">NGGAK 😈</button>
+    </div>
+
+    <p id="valentineAnswer"></p>
+  </div>
+
+  <!-- Hug -->
+  <div class="card">
+    <h2>Tombol Peluk 🤗</h2>
+    <button onclick="hug()">Peluk Nduttt Sekarang 🤍</button>
+    <p id="hugText"></p>
+  </div>
+
+  <footer>Made by pacarmuu evannnn 💖</footer>
+</div>
+
+<script>
+  function startLove() {
+    document.getElementById("opening").style.display = "none";
+    document.getElementById("bgMusic").play();
+    spawnHearts();
+    spawnFlowers();
+  }
+
+  function openPopup(src) {
+    document.getElementById("popup").style.display = "flex";
+    document.getElementById("popupImg").src = src;
+  }
+
+  function closePopup() {
+    document.getElementById("popup").style.display = "none";
+  }
+
+  function showSurprise1() {
+    document.getElementById("surprise1").style.display = "block";
+    spawnHearts();
+    spawnButterflies();
+    spawnFlowers();
+  }
+
+  function showStory() {
+    document.getElementById("storyBox").style.display = "block";
+    spawnHearts();
+    spawnButterflies();
+    spawnFlowers();
+  }
+
+  function hug() {
+    document.getElementById("hugText").innerHTML =
+      "Nduttt… peluk jauh dari aku 🤍😭 semoga kita cepet ketemu yaa 💖";
+    spawnHearts();
+    spawnFlowers();
+  }
+
+  /* 💗 Hearts */
+  function spawnHearts() {
+    for (let i = 0; i < 15; i++) {
+      let heart = document.createElement("div");
+      heart.className = "heart";
+      heart.innerHTML = "💗";
+      heart.style.left = Math.random() * 100 + "vw";
+      document.body.appendChild(heart);
+
+      setTimeout(() => heart.remove(), 6000);
+    }
+  }
+
+  /* 🌸 Flowers */
+  function spawnFlowers() {
+    for (let i = 0; i < 10; i++) {
+      let flower = document.createElement("div");
+      flower.className = "flower";
+      flower.innerHTML = "🌸";
+      flower.style.left = Math.random() * 100 + "vw";
+      flower.style.animationDuration = (Math.random() * 3 + 5) + "s";
+      document.body.appendChild(flower);
+
+      setTimeout(() => flower.remove(), 7000);
+    }
+  }
+
+  /* 🦋 Butterflies */
+  function spawnButterflies() {
+    for (let i = 0; i < 6; i++) {
+      let b = document.createElement("div");
+      b.className = "butterfly";
+      b.innerHTML = "🦋";
+      b.style.left = Math.random() * 50 + "vw";
+      b.style.top = Math.random() * 50 + "vh";
+      document.body.appendChild(b);
+
+      setTimeout(() => b.remove(), 6000);
+    }
+  }
+
+  /* 💌 Secret Message */
+  function secretMessage() {
+    document.getElementById("secretText").innerHTML =
+      "Nduttt… kalau kamu baca ini, berarti kamu milik aku selamanya 🤍😚";
+    spawnHearts();
+    spawnButterflies();
+  }
+
+  /* 🎁 Random Gift */
+  function randomGift() {
+    let gifts = [
+      "Peluk 1000x 🤗",
+      "Cium Virtual 😚",
+      "Kangen level max 😭",
+      "Tanggal ketemu segera yaa 💖",
+      "Aku bangga punya kamu 🤍"
+    ];
+
+    let pick = gifts[Math.floor(Math.random() * gifts.length)];
+    document.getElementById("giftBox").innerHTML = pick;
+    spawnFlowers();
+  }
+
+  /* 💘 Yes Button */
+  function yesLove() {
+    document.getElementById("valentineAnswer").innerHTML =
+      "YEAYYYY 😭💖 Nduttt resmi jadi Valentineku selamanya!!!";
+    spawnHearts();
+    spawnFlowers();
+    spawnButterflies();
+  }
+
+  /* 😈 No Button Kabur */
+  let noBtn = document.getElementById("noBtn");
+
+  noBtn.addEventListener("mouseover", () => {
+    let x = Math.random() * 200;
+    let y = Math.random() * 100;
+
+    noBtn.style.left = x + "px";
+    noBtn.style.top = y + "px";
+  });
+</script>
+
+</body>
+</html>
